@@ -7,7 +7,7 @@ def tcp_reno():
     ssthresh = int(input("Enter the slow start  threshold (ssthresh): "))
     total_packets = int(input("Enter the total number of packets: "))
 
-    max_cwnd = 50  
+    max_cwnd = 25  
     rtt = 1  
     packet_number = 1 # Starting packet number
     packets_sent = []  # List to track sent packets
@@ -22,7 +22,7 @@ def tcp_reno():
         for packet in packets_to_send:
             # Simulate packet loss
             if random.random() < 0.1:  # Simulate packet loss
-                print(f"Packet {packet} lost! Timeout detected.")
+                print(f"Packet {packet} lost! Timeout.")
                 print("Packet Loss Detected! Performing Slow Start.")
                 ssthresh = cwnd // 2  # Multiplicative decrease
                 cwnd = max(1, ssthresh)  # Reset congestion window
@@ -55,7 +55,7 @@ def tcp_reno():
 
         time.sleep(rtt)  # Simulate RTT
 
-    print("TCP Reno Congestion Control Complete.")
+    print("TCP Reno Complete.")
 
     
 
