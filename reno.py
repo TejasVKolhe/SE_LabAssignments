@@ -1,11 +1,10 @@
 import time
 import random
 
-
 def tcp_reno():
 
     cwnd = 1
-    ssthresh = int(input("Enter the slow start threshold (ssthresh): "))
+    ssthresh = int(input("Enter the slow start  threshold (ssthresh): "))
     total_packets = int(input("Enter the total number of packets: "))
 
     max_cwnd = 50  
