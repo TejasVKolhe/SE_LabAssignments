@@ -1,17 +1,20 @@
 import time
 import random
 
-# TCP Reno simulation
-def tcp_reno(total_packets=50):
-    cwnd = 1  # Start congestion window at 1
-    ssthresh = 16  # Slow start threshold
-    max_cwnd = 50  # Maximum window size
-    rtt = 1  # Round trip time
+
+def tcp_reno():
+
+    cwnd = 1
+    ssthresh = int(input("Enter the slow start threshold (ssthresh): "))
+    total_packets = int(input("Enter the total number of packets: "))
+
+    max_cwnd = 50  
+    rtt = 1  
     packet_number = 1 # Starting packet number
     packets_sent = []  # List to track sent packets
 
-    while packet_number < total_packets + 128:  # Sending packets until reaching total_packets
-        print(f"\n[INFO] Congestion Window (cwnd): {cwnd}")
+    while packet_number < total_packets :  # Sending packets until reaching total_packets
+        print(f"\nCongestion Window (cwnd): {cwnd}")
 
         # Determine how many packets to send based on the congestion window
         packets_to_send = list(range(packet_number, packet_number + cwnd))
@@ -36,7 +39,7 @@ def tcp_reno(total_packets=50):
             if packet == packets_to_send[-1] and random.random() < 0.2:  # Simulate receiving a duplicate ACK
                 print(f"Received 3 Duplicate ACKs for packet {packet}!")
                 ssthresh = cwnd // 2  # Update ssthresh
-                cwnd = max(1, (ssthresh // 2) + 3)  # New cwnd after 3 duplicate ACKs
+                cwnd = max(1, ssthresh + 3)  # New cwnd after 3 duplicate ACKs
                 print(f"New ssthresh: {ssthresh}, cwnd: {cwnd}")
 
                 
@@ -56,5 +59,7 @@ def tcp_reno(total_packets=50):
         time.sleep(rtt)  # Simulate RTT
 
     print("TCP Reno Congestion Control Complete.")
+
+    
 
 tcp_reno()
