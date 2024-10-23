@@ -1,6 +1,9 @@
 import time
 import random
 
+
+
+
 def tcp_tahoe():
     cwnd = 1  # Congestion window size
     ssthresh = 16  # Slow start threshold
